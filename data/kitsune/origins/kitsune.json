@@ -1,0 +1,19 @@
+{
+    "powers": [
+        "kitsune:spirit_dash",
+        "kitsune:fox_fire",
+        "kitsune:spirit_gauge",
+        "kitsune:diet",
+        "kitsune:passives",
+        "kitsune:phantomize",
+        "kitsune:phasing",
+        "kitsune:damage_modification",
+        "kitsune:spirit_weapons",
+        "kitsune:timers",
+        "kitsune:foxform"
+    ],
+    "icon": "minecraft:sweet_berries",
+    "impact": 3,
+    "name": "Kitsune 2",
+    "description": "The race of spirit foxes known as Kitsune. They are physically weak and frail. But what they lack in physical prowess, they make up in speed and agility. They are a tricky race using fox fires to evade and confuse foes."
+}

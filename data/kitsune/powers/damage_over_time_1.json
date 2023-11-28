@@ -1,0 +1,47 @@
+{
+    "type": "origins:multiple",
+    "gauge": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 7,
+        "start_value": 7,
+        "min_action": {
+            "type": "origins:revoke_power",
+            "power": "kitsune:damage_over_time_1",
+            "source": "kitsune:spirit_fire"
+        },
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_02.png",
+            "bar_index": 15
+        }
+    },
+    "damage_over_time": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:damage",
+                    "amount": 1,
+                    "source": {
+                        "name": "magic",
+                        "fire": true,
+                        "bypasses_armor": false
+                    }
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "kitsune:damage_over_time_1_gauge",
+                    "change": -1                    
+                }
+            ]
+        },
+        "interval": 20
+    },
+    "particles": {
+        "type": "origins:particle",
+        "particle": "minecraft:soul_fire_flame",
+        "frequency": 4
+    }
+}

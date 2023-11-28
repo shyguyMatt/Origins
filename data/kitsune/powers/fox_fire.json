@@ -1,0 +1,61 @@
+{
+    "type": "origins:multiple",
+    "tracking": {
+        "type": "origins:active_self",
+        "condition": {
+            "type": "origins:using_item",
+            "item_condition": {
+                "type": "origins:ingredient",
+                "ingredient": {
+                    "item": "minecraft:bow"
+                }
+            },
+            "inverted": true
+        },
+        "entity_action": {
+            "type": "origins:area_of_effect",
+            "radius": 32,
+            "bientity_action": {
+                "type": "origins:target_action",
+                "action": {
+                    "type": "origins:and",
+                    "actions": [
+                        {
+                            "type": "origins:change_resource",
+                            "resource": "kitsune:spirit_fire_toggle",
+                            "change": 1
+                        },
+                        {
+                            "type": "origins:change_resource",
+                            "resource": "kitsune:spirit_fire_time",
+                            "change": -5
+                        }
+                    ]
+                }
+            },
+            "bientity_condition": {
+                "type": "origins:target_condition",
+                "condition": {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:living"
+                        },
+                        {
+                            "type": "origins:resource",
+                            "resource": "kitsune:spirit_fire_toggle",
+                            "comparison": "==",
+                            "compare_to": 0                            
+                        }
+                    ]
+                }
+            }
+        },
+        "key": {
+            "key": "key.origins.secondary_active",
+            "continuous": false
+        }
+    },
+    "name": "Fox Fire [Secondary]",
+    "description": "The kitsune can activate their [Secondary Active] ability to detonate neaby fox fires causing them to seek out nearby enemies."
+}

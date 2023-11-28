@@ -1,0 +1,670 @@
+{
+    "type": "origins:multiple",
+    "hidden": false,
+    "name": "Spirit Charges",
+    "description": "As the kitsune gets older it grows in power. Gaining 1 [Spirit Charge] for every 10 levels up to a maximum of 9.",
+    "timer": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 4,
+        "start_value": 1,
+        "max_action": {
+            "type": "origins:change_resource",
+            "resource": "kitsune:spirit_gauge_timer",
+            "operation": "set",
+            "change": 0
+        },
+        "min_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:change_resource",
+                    "resource": "kitsune:spirit_gauge_decay",
+                    "change": 1
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "kitsune:spirit_gauge_recharge",
+                    "change": 1                    
+                }
+            ]
+        },
+        "hud_render": {
+            "should_render": false
+        }
+    },
+    "gauge": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 2520,
+        "start_value": 2520,
+        "min_action": {
+            "type": "origins:if_else",
+            "condition": {
+                "type": "origins:power_active",
+                "power": "kitsune:phantomize_toggle"
+            },
+            "if_action": {
+                "type": "origins:toggle",
+                "power": "kitsune:phantomize_toggle"
+            }
+        },
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
+            "bar_index": 12
+        }
+    },
+    "recharge": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 50,
+        "max_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:power_active",
+                        "power": "kitsune:phantomize_toggle",
+                        "inverted": true
+                    },
+                    "if_action": {
+                        "type": "origins:change_resource",
+                        "resource": "kitsune:spirit_gauge_change",
+                        "change": 1
+                    }                     
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "kitsune:spirit_gauge_recharge",
+                    "operation": "set",
+                    "change": 0
+                }
+            ]
+        
+        },
+        "hud_render": {
+            "should_render": false
+        }
+    },
+    "decay": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 15,
+        "max_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:and",
+                        "conditions": [
+                            {
+                                "type": "origins:power_active",
+                                "power": "kitsune:phantomize_toggle"
+                            },
+                            {
+                                "type": "origins:resource",
+                                "resource": "kitsune:phantomize_gauge",
+                                "comparison": "==",
+                                "compare_to": 0
+                            }
+                        ]
+                    },
+                    "if_action": {
+                        "type": "origins:change_resource",
+                        "resource": "kitsune:spirit_gauge_change",
+                        "change": -1                
+                    }                    
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "kitsune:spirit_gauge_decay",
+                    "operation": "set",
+                    "change": 0
+                }
+            ]
+        },
+        "hud_render": {
+            "should_render": false
+        }
+    },
+    "change": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 2,
+        "start_value": 1,
+        "hud_render": {
+            "should_render": false
+        },
+        "min_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:change_resource",
+                    "resource": "kitsune:spirit_gauge_change",
+                    "operation": "set",
+                    "change": 1
+                },
+                {
+                    "type": "origins:if_else_list",
+                    "actions": [
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 0                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 9
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -0
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 10                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 19
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -2520
+                            }   
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 20                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 29
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -1260
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 30                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 39
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -840
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 40                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 49
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -630
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 50                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 59
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -504
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 60                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 69
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -420
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 70                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 79
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -360
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 80                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 89
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -315
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 90                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 99
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -280
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 100                                        
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": -280
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "max_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:change_resource",
+                    "resource": "kitsune:spirit_gauge_change",
+                    "operation": "set",
+                    "change": 1
+                },
+                {
+                    "type": "origins:if_else_list",
+                    "actions": [
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 0                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 9
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 0
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 10                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 19
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 2520
+                            }   
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 20                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 29
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 1260
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 30                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 39
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 840
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 40                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 49
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 630
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 50                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 59
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 504
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 60                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 69
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 420
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 70                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 79
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 360
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 80                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 89
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 280
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 90                                        
+                                    },
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": "<=",
+                                        "compare_to": 99
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 252
+                            }
+                        },
+                        {
+                            "condition": {
+                                "type": "origins:and",
+                                "conditions": [
+                                    {
+                                        "type": "origins:xp_levels",
+                                        "comparison": ">=",
+                                        "compare_to": 100                                        
+                                    }
+                                ]
+
+                            },
+                            "action": {
+                                "type": "origins:change_resource",
+                                "resource": "kitsune:spirit_gauge_gauge",
+                                "change": 280
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

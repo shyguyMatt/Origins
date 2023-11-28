@@ -1,0 +1,77 @@
+{
+    "type": "origins:multiple",
+    "hidden": true,
+    "toggle": {
+        "type": "origins:toggle",
+        "active_by_default": false,
+        "key": {
+            "key": "origins:nothing",
+            "continuous": false
+        }
+    },
+    "spirit_form": {
+        "type": "origins:model_color",
+        "alpha": 0.8,
+        "red": 0.5,
+        "green": 0.5,
+        "condition": {
+            "type": "origins:power_active",
+            "power": "kitsune:phantomize_toggle"
+        }
+    },
+    "gauge": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 10,
+        "start_value": 0,
+        "hud_render": {
+            "should_render": false
+        }
+    },
+    "timer": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "kitsune:phantomize_gauge",
+            "change": -1
+        },
+        "interval": 1
+    },
+    "deactivate": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:if_else",
+            "condition": {
+                "type": "origins:and",
+                "conditions": [
+                    {
+                        "type": "origins:block_in_radius",
+                        "block_condition": {
+                            "type": "origins:movement_blocking"
+                        },
+                        "radius": 0,
+                        "shape": "cube",
+                        "comparison": ">",
+                        "compare_to": 0,
+                        "inverted": true
+                    },
+                    {
+                        "type": "origins:power_active",
+                        "power": "kitsune:phantomize_toggle"
+                    }
+                ]
+            },
+            "if_action": {
+                "type": "origins:toggle",
+                "power": "kitsune:phantomize_toggle"
+            }
+        },
+        "interval": 2,
+        "condition": {
+            "type": "origins:resource",
+            "resource":"kitsune:phantomize_gauge",
+            "comparison": "==",
+            "compare_to": 0
+        }
+    }
+}
