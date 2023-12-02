@@ -1,0 +1,30 @@
+{
+  "type": "origins:multiple",
+
+  "invis": {
+    "type": "origins:invisibility",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:invisibility_gauge",
+      "comparison": ">",
+      "compare_to": 0
+    }
+  },
+
+  "gauge": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": true},
+    "min": 0,
+    "max": 1000
+  },
+
+  "timer": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "entity_action": {
+      "type": "origins:change_resource",
+      "resource": "silvafox_kitsune:invisibility_gauge",
+      "change": -1
+    }
+  }
+}

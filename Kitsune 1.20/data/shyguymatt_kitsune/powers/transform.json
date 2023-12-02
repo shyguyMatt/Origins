@@ -1,0 +1,111 @@
+{
+  "type": "origins:multiple",
+
+  "clock": {
+    "type": "origins:resource",
+    "hud_render": {
+      "should_render": false
+    },
+    "min": 0,
+    "max": 1,
+    "max_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:change_resource",
+          "resource": "shyguymatt_kitsune:transform_clock",
+          "operation": "set",
+          "change": 0
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:sprinting"
+          },
+          "if_action": {
+            "type": "origins:change_resource",
+            "resource": "shyguymatt_kitsune:transform_sprint_gauge",
+            "change": 5
+          },
+          "else_action": {
+            "type": "origins:change_resource",
+            "resource": "shyguymatt_kitsune:transform_sprint_gauge",
+            "change": -7
+          }
+        }
+      ]
+    }
+  },
+
+  "form": {
+    "type": "origins:resource",
+    "hud_render": {
+      "should_render": false
+    },
+    "min": 0,
+    "max": 1,
+    "max_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:height 0.5 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:step_height 1.75 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:width 0.5 @s"
+      }
+      ]
+    },
+    "min_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:height 0.75 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:step_height 1 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:width 0.75 @s"
+      }
+      ]
+    }
+  },
+
+  "sprint_gauge": {
+    "type": "origins:resource",
+    "hud_render": {
+      "should_render": true
+    },
+    "min": 0,
+    "max": 30,
+    "max_action": {
+      "type": "origins:change_resource",
+      "resource": "shyguymatt_kitsune:transform_form",
+      "operation": "set",
+      "change": 1
+    },
+    "min_action": {
+      "type": "origins:change_resource",
+      "resource": "shyguymatt_kitsune:transform_form",
+      "operation": "set",
+      "change": 0
+    }
+  }
+
+
+}

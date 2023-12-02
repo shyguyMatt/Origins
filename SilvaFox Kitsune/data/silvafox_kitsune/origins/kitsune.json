@@ -1,0 +1,15 @@
+{
+  "powers": [
+    "silvafox_kitsune:tails",
+    "silvafox_kitsune:tail_powers",
+    "silvafox_kitsune:passives",
+    "silvafox_kitsune:camouflage",
+    "silvafox_kitsune:invisibility",
+    "silvafox_kitsune:nifty_tricks",
+    "silvafox_kitsune:lifesteal"
+  ],
+  "icon": "minecraft:sweet_berries",
+  "impact": 3,
+  "name": "SilvaFox Kitsune",
+  "description": "Kitsune idea by SilvaFox. Pack made by ShyguyMatt"
+}

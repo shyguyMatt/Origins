@@ -1,0 +1,12 @@
+{
+  "type": "origins:multiple",
+
+  "gauge": {
+    "type": "origins:resource",
+    "hud_render": {
+      "should_render": true
+    },
+    "min": 0,
+    "max": 9
+  }
+}

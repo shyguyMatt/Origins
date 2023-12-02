@@ -1,0 +1,19 @@
+{
+  "type": "origins:multiple",
+  
+  "action": {
+    "type": "origins:action_on_hit",
+    "bientity_action": {
+      "type": "origins:actor_action",
+      "action": {
+        "type": "origins:chance",
+        "chance": 1,
+        "action": {
+          "type": "origins:grant_power",
+          "power": "silvafox_kitsune:extra_life",
+          "source": "silvafox_kitsune:lifesteal"
+        }
+      }
+    }
+  }
+}

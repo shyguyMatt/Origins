@@ -1,0 +1,99 @@
+{
+  "type": "origins:multiple",
+  "set_interval": {
+    "type": "origins:action_over_time",
+    "interval": 1,
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else_list",
+          "actions": [
+            {
+              "condition": {
+                "type": "origins:resource",
+                "resource": "shyguymatt_kitsune:clock_main_loop",
+                "comparison": "==",
+                "compare_to": 0
+              },
+              "action": {
+                "type": "origins:and",
+                "actions": [
+                  {
+                    "type": "origins:change_resource",
+                    "resource": "shyguymatt_kitsune:transform_clock",
+                    "operation": "set",
+                    "change": 1
+                  }
+                ]
+              }
+            },
+            {
+              "condition": {
+                "type": "origins:resource",
+                "resource": "shyguymatt_kitsune:clock_main_loop",
+                "comparison": "==",
+                "compare_to": 1
+              },
+              "action": {
+                "type": "origins:and",
+                "actions": [
+
+                ]
+              }
+            },
+            {
+              "condition": {
+                "type": "origins:resource",
+                "resource": "shyguymatt_kitsune:clock_main_loop",
+                "comparison": "==",
+                "compare_to": 2
+              },
+              "action": {
+                "type": "origins:and",
+                "actions": [
+
+                ]
+              }
+            },
+            {
+              "condition": {
+                "type": "origins:resource",
+                "resource": "shyguymatt_kitsune:clock_main_loop",
+                "comparison": "==",
+                "compare_to": 3
+              },
+              "action": {
+                "type": "origins:and",
+                "actions": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "shyguymatt_kitsune:clock_main_loop",
+          "operation": "add",
+          "change": 1
+        }
+      ]
+    }
+  },
+
+  "main_loop": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 4,
+    "max_action": {
+      "type": "origins:change_resource",
+      "resource": "shyguymatt_kitsune:clock_main_loop",
+      "operation": "set",
+      "change": 0
+    },
+    "hud_render": {
+      "should_render": false
+    }
+  }
+}
