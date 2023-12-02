@@ -73,7 +73,7 @@
 
   "gauge": {
     "type": "origins:resource",
-    "hud_render": {"should_render": true},
+    "hud_render": {"should_render": false},
     "min": 0,
     "max": 30,
     "max_action": {
@@ -138,14 +138,24 @@
 
   "wolf_sight": {
     "type": "origins:resource",
-    "hud_render": {"should_render": true},
+    "hud_render": {"should_render": false},
     "min": 0,
     "max": 5
   },
 
   "cooldown": {
     "type": "origins:resource",
-    "hud_render": {"should_render": true},
+    "hud_render": {
+      "should_render": true,
+      "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
+      "bar_index": 9,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:camouflage_cooldown",
+        "comparison": "!=",
+        "compare_to": 150
+      }
+    },
     "min": 0,
     "max": 150
   }

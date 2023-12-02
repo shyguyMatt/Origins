@@ -13,7 +13,7 @@
 
   "gauge": {
     "type": "origins:resource",
-    "hud_render": {"should_render": true},
+    "hud_render": {"should_render": false},
     "min": 0,
     "max": 1000
   },
